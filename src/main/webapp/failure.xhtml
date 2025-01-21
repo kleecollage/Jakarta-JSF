@@ -6,15 +6,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:form>
-        <table>
-            <tr>
-                <td><h:outputLabel for="name" value="Name:" /></td>
-                <td><h:inputText id="name" value="#{candidate.name}" /></td>
-                <td><h:message for="name" /></td>
-            </tr>
-        </table>
-        <h:commandButton action="#{vacantForm.send()}" value="Send" />
-    </h:form>
+   <h:form>
+      Sorry #{candidate.name}, no vacats available <br/>
+      <h:commandLink action="index">Return</h:commandLink>
+   </h:form>
 </f:view>
 </html>
