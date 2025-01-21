@@ -4,13 +4,15 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.util.Date;
 
 @Named
 @RequestScoped
 public class Candidate {
     private String name;
     private String surname;
-    private String desiredSalary;
+    private int desiredSalary;
+    private Date dateOfBirth;
 
     Logger log = LogManager.getRootLogger();
 
@@ -37,12 +39,20 @@ public class Candidate {
         log.info("Modify surname property: " + this.surname);
     }
 
-    public String getDesiredSalary() {
+    public int getDesiredSalary() {
         return desiredSalary;
     }
 
-    public void setDesiredSalary(String desiredSalary) {
+    public void setDesiredSalary(int desiredSalary) {
         this.desiredSalary = desiredSalary;
         log.info("Modify desired salary property: " + this.desiredSalary);
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

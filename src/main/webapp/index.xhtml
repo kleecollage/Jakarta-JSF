@@ -27,6 +27,14 @@
                 </td>
                 <td><h:message for="desiredSalary" /></td>
             </tr>
+            <tr>
+                <td><h:outputLabel for="dateOfBirth" value="Date Of Birth:"/></td>
+                <td><h:inputText id="dateOfBirth" required="true" value="#{candidate.dateOfBirth}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                </td>
+                <td><h:message for="dateOfBirth" /></td>
+            </tr>
         </table>
         <h:commandButton action="#{vacantForm.send()}" value="Send" />
     </h:form>

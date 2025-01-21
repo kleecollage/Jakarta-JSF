@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>gm</groupId>
-    <artifactId>hello</artifactId>
+    <artifactId>job-board</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>HelloWorld</name>
     <packaging>war</packaging>
