@@ -1,1 +1,5 @@
-<beans xmlns="http://xmlns.jcp.org/xml/ns/javaee" bean-discovery-mode="all" />
+<beans xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                                  https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd"
+       bean-discovery-mode="all" />
