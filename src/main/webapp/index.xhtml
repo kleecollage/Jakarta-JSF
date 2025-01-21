@@ -7,11 +7,25 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h:form>
+        <h:messages globalOnly="true" />
         <table>
             <tr>
                 <td><h:outputLabel for="name" value="Name:" /></td>
-                <td><h:inputText id="name" value="#{candidate.name}" /></td>
+                <td><h:inputText id="name" required="true" value="#{candidate.name}" /></td>
                 <td><h:message for="name" /></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="surname" value="Surname" /></td>
+                <td><h:inputText id="surname" required="true" value="#{candidate.surname}" /></td>
+                <td><h:message for="surname"/> </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="desiredSalary" value="Desired Salary" /> </td>
+                <td><h:inputText id="desiredSalary" required="true" value="#{candidate.desiredSalary}">
+                        <f:validateLongRange minimum="500" maximum="5000" />
+                    </h:inputText>
+                </td>
+                <td><h:message for="desiredSalary" /></td>
             </tr>
         </table>
         <h:commandButton action="#{vacantForm.send()}" value="Send" />
