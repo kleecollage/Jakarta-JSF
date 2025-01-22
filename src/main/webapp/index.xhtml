@@ -5,97 +5,105 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:form id="vacantForm">
-        <h:messages globalOnly="true" />
-        <table>
-            <tr>
-                <td><h:outputLabel for="name" value="#{msgs['vacantForm.name']}" /></td>
-                <td><h:inputText id="name" required="true" value="#{candidate.name}" /></td>
-                <td><h:message for="name" /></td>
-            </tr>
-            <tr>
-                <td><h:outputLabel for="surname" value="#{msgs['vacantForm.surname']}" /></td>
-                <td><h:inputText id="surname" required="true" value="#{candidate.surname}" /></td>
-                <td><h:message for="surname"/> </td>
-            </tr>
-            <tr>
-                <td><h:outputLabel for="desiredSalary" value="#{msgs['vacantForm.desiredSalary']}" /> </td>
-                <td><h:inputText id="desiredSalary" required="true" value="#{candidate.desiredSalary}">
-                        <f:validateLongRange minimum="500" maximum="5000" />
-                    </h:inputText>
-                </td>
-                <td><h:message for="desiredSalary" /></td>
-            </tr>
-            <tr>
-                <td><h:outputLabel for="dateOfBirth" value="#{msgs['vacantForm.dateOfBirth']}"/></td>
-                <td><h:inputText id="dateOfBirth" required="true" value="#{candidate.dateOfBirth}">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:inputText>
-                </td>
-                <td><h:message for="dateOfBirth" /></td>
-            </tr>
-            <tr>
-                <td><h:outputLabel for="zipCode" value="#{msgs['vacantForm.zipCode']}"/></td>
-                <td><h:inputText
-                        id="zipCode"
-                        immediate="true"
-                        onchange="this.form.submit()"
-                        required="true"
-                        value="#{candidate.zipCode}"
-                        valueChangeListener="#{vacantForm.zipCodeListener}" >
-                        <f:convertNumber integerOnly="true" pattern="00000" />
-                    </h:inputText>
-                </td>
-                <td><h:message for="zipCode" /></td>
-            </tr>
-            <tr>
-                <td><h:outputLabel for="suburbId" value="#{msgs['vacantForm.suburbId']}"/></td>
-                <td><h:selectOneMenu id="suburbId" required="true" value="#{candidate.suburbId}" >
-                        <f:selectItem itemLabel="#{msgs['vacantForm.select']}" itemValue="" />
-                    <f:selectItems value="#{suburbHelper.selectItems}" />
-                    </h:selectOneMenu>
-                </td>
-                <td><h:message for="suburbId" /></td>
-            </tr>
-            <tr>
-                <td><h:outputLabel for="city" value="#{msgs['vacantForm.city']}"/></td>
-                <td><h:inputText
-                        id="city"
-                        immediate="true"
-                        required="true"
-                        value="#{candidate.city}" />
-                </td>
-                <td><h:message for="city" /></td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td>
-                    <h:commandLink
-                            actionListener="#{vacantForm.hideComment}"
-                            immediate="true"
-                            rendered="#{!vacantForm.commentSent}"
-                            value="#{msgs['vacantForm.show']}" />
-                    <h:commandLink
-                            actionListener="#{vacantForm.hideComment}"
-                            immediate="true"
-                            rendered="#{vacantForm.commentSent}"
-                            value="#{msgs['vacantForm.hide']}" />
-                </td>
-            </tr>
-        </table>
-        <h:panelGroup rendered="#{vacantForm.commentSent}">
-            <table>
-                <tr>
-                    <td><h:outputLabel for="comment" value="#{msgs['vacantForm.comment']}" /> </td>
-                </tr>
-                <tr>
-                    <td><h:inputTextarea id="comment" cols="50" rows="10" value="#{candidate.comment}" /></td>
-                </tr>
-            </table>
-        </h:panelGroup>
-        <h:commandButton action="#{vacantForm.send()}" value="#{msgs['vacantForm.send']}" />
-    </h:form>
-</f:view>
+<h:head>
+    <title>Job Board</title>
+</h:head>
+
+<h:body>
+    <ui:composition template="./WEB-INF/layouts/layout.xhtml">
+        <ui:define name="content">
+            <h:form id="vacantForm">
+                <h:messages globalOnly="true" />
+                <table>
+                    <tr>
+                        <td><h:outputLabel for="name" value="#{msgs['vacantForm.name']}" /></td>
+                        <td><h:inputText id="name" required="true" value="#{candidate.name}" /></td>
+                        <td><h:message for="name" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="surname" value="#{msgs['vacantForm.surname']}" /></td>
+                        <td><h:inputText id="surname" required="true" value="#{candidate.surname}" /></td>
+                        <td><h:message for="surname"/> </td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="desiredSalary" value="#{msgs['vacantForm.desiredSalary']}" /> </td>
+                        <td><h:inputText id="desiredSalary" required="true" value="#{candidate.desiredSalary}">
+                            <f:validateLongRange minimum="500" maximum="5000" />
+                        </h:inputText>
+                        </td>
+                        <td><h:message for="desiredSalary" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="dateOfBirth" value="#{msgs['vacantForm.dateOfBirth']}"/></td>
+                        <td><h:inputText id="dateOfBirth" required="true" value="#{candidate.dateOfBirth}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:inputText>
+                        </td>
+                        <td><h:message for="dateOfBirth" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="zipCode" value="#{msgs['vacantForm.zipCode']}"/></td>
+                        <td><h:inputText
+                                id="zipCode"
+                                immediate="true"
+                                onchange="this.form.submit()"
+                                required="true"
+                                value="#{candidate.zipCode}"
+                                valueChangeListener="#{vacantForm.zipCodeListener}" >
+                            <f:convertNumber integerOnly="true" pattern="00000" />
+                        </h:inputText>
+                        </td>
+                        <td><h:message for="zipCode" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="suburbId" value="#{msgs['vacantForm.suburbId']}"/></td>
+                        <td><h:selectOneMenu id="suburbId" required="true" value="#{candidate.suburbId}" >
+                            <f:selectItem itemLabel="#{msgs['vacantForm.select']}" itemValue="" />
+                            <f:selectItems value="#{suburbHelper.selectItems}" />
+                        </h:selectOneMenu>
+                        </td>
+                        <td><h:message for="suburbId" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="city" value="#{msgs['vacantForm.city']}"/></td>
+                        <td><h:inputText
+                                id="city"
+                                immediate="true"
+                                required="true"
+                                value="#{candidate.city}" />
+                        </td>
+                        <td><h:message for="city" /></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <h:commandLink
+                                    actionListener="#{vacantForm.hideComment}"
+                                    immediate="true"
+                                    rendered="#{!vacantForm.commentSent}"
+                                    value="#{msgs['vacantForm.show']}" />
+                            <h:commandLink
+                                    actionListener="#{vacantForm.hideComment}"
+                                    immediate="true"
+                                    rendered="#{vacantForm.commentSent}"
+                                    value="#{msgs['vacantForm.hide']}" />
+                        </td>
+                    </tr>
+                </table>
+                <h:panelGroup rendered="#{vacantForm.commentSent}">
+                    <table>
+                        <tr>
+                            <td><h:outputLabel for="comment" value="#{msgs['vacantForm.comment']}" /> </td>
+                        </tr>
+                        <tr>
+                            <td><h:inputTextarea id="comment" cols="50" rows="10" value="#{candidate.comment}" /></td>
+                        </tr>
+                    </table>
+                </h:panelGroup>
+                <h:commandButton action="#{vacantForm.send()}" value="#{msgs['vacantForm.send']}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
 </html>
