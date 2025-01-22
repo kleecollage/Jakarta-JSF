@@ -48,14 +48,16 @@
                 <td><h:message for="zipCode" /></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="neighbourhood" value="#{msgs['vacantForm.neighbourhood']}"/></td>
-                <td><h:inputText
-                        id="neighbourhood"
-                        immediate="true"
-                        required="true"
-                        value="#{candidate.neighbourhood}" />
+                <td><h:outputLabel for="suburbId" value="#{msgs['vacantForm.suburbId']}"/></td>
+                <td><h:selectOneMenu id="suburbId" required="true" value="#{candidate.suburbId}" >
+                        <f:selectItem itemLabel="#{msgs['vacantForm.select']}" itemValue="" />
+                        <f:selectItem itemLabel="Napoles" itemValue="1" />
+                        <f:selectItem itemLabel="Polanco" itemValue="2" />
+                        <f:selectItem itemLabel="Del Valle Centro" itemValue="3" />
+                        <f:selectItem itemLabel="Roma" itemValue="4" />
+                    </h:selectOneMenu>
                 </td>
-                <td><h:message for="neighbourhood" /></td>
+                <td><h:message for="suburbId" /></td>
             </tr>
             <tr>
                 <td><h:outputLabel for="city" value="#{msgs['vacantForm.city']}"/></td>

@@ -14,9 +14,9 @@ public class Candidate {
     private int desiredSalary;
     private Date dateOfBirth;
     private String zipCode;
-    private String neighbourhood;
     private String city;
     private String comment;
+    private int suburbId;
 
     Logger log = LogManager.getRootLogger();
 
@@ -68,14 +68,6 @@ public class Candidate {
         this.zipCode = zipCode;
     }
 
-    public String getNeighbourhood() {
-        return neighbourhood;
-    }
-
-    public void setNeighbourhood(String neighbourhood) {
-        this.neighbourhood = neighbourhood;
-    }
-
     public String getCity() {
         return city;
     }
@@ -90,5 +82,13 @@ public class Candidate {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public int getSuburbId() {
+        return suburbId;
+    }
+
+    public void setSuburbId(int suburbId) {
+        this.suburbId = suburbId;
     }
 }

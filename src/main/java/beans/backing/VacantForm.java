@@ -56,10 +56,10 @@ public class VacantForm {
         String newZipCode = (String) event.getNewValue();
         if ("03810".equals(newZipCode)) {
             // ACCESS TO COMPONENT
-            UIInput neighbourhoodInputText = (UIInput) viewRoot.findComponent("vacantForm:neighbourhood");
-            String newNeighbourhood = "Napoles";
-            neighbourhoodInputText.setValue(newNeighbourhood);
-            neighbourhoodInputText.setSubmittedValue(newNeighbourhood);
+            UIInput suburbIdInputText = (UIInput) viewRoot.findComponent("vacantForm:suburbId");
+            int newSuburbId = 1;
+            suburbIdInputText.setValue(newSuburbId);
+            suburbIdInputText.setSubmittedValue(newSuburbId);
             // ACCESS COMPONENT
             UIInput cityInputText = (UIInput) viewRoot.findComponent("vacantForm:city");
             String newCity = "Ciudad de Mexico";
