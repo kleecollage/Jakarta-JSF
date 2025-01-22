@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:form>
+    <h:form id="vacantForm">
         <h:messages globalOnly="true" />
         <table>
             <tr>
@@ -34,6 +34,38 @@
                     </h:inputText>
                 </td>
                 <td><h:message for="dateOfBirth" /></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="zipCode" value="#{msgs['vacantForm.zipCode']}"/></td>
+                <td><h:inputText
+                        id="zipCode"
+                        immediate="true"
+                        onchange="this.form.submit()"
+                        required="true"
+                        value="#{candidate.zipCode}"
+                        valueChangeListener="#{vacantForm.zipCodeListener}" />
+                </td>
+                <td><h:message for="zipCode" /></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="neighbourhood" value="#{msgs['vacantForm.neighbourhood']}"/></td>
+                <td><h:inputText
+                        id="neighbourhood"
+                        immediate="true"
+                        required="true"
+                        value="#{candidate.neighbourhood}" />
+                </td>
+                <td><h:message for="neighbourhood" /></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="city" value="#{msgs['vacantForm.city']}"/></td>
+                <td><h:inputText
+                        id="city"
+                        immediate="true"
+                        required="true"
+                        value="#{candidate.city}" />
+                </td>
+                <td><h:message for="city" /></td>
             </tr>
         </table>
         <h:commandButton action="#{vacantForm.send()}" value="#{msgs['vacantForm.send']}" />

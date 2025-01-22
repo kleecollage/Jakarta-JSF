@@ -13,6 +13,9 @@ public class Candidate {
     private String surname;
     private int desiredSalary;
     private Date dateOfBirth;
+    private String zipCode;
+    private String neighbourhood;
+    private String city;
 
     Logger log = LogManager.getRootLogger();
 
@@ -54,5 +57,29 @@ public class Candidate {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getNeighbourhood() {
+        return neighbourhood;
+    }
+
+    public void setNeighbourhood(String neighbourhood) {
+        this.neighbourhood = neighbourhood;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

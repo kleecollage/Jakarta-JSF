@@ -3,7 +3,10 @@ package beans.backing;
 import beans.model.Candidate;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.ValueChangeEvent;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.apache.logging.log4j.LogManager;
@@ -41,6 +44,26 @@ public class VacantForm {
         else {
             log.info("Enter failure case");
             return "failure";
+        }
+    }
+
+    public void zipCodeListener(ValueChangeEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        UIViewRoot viewRoot = facesContext.getViewRoot();
+        String newZipCode = (String) event.getNewValue();
+        if ("03810".equals(newZipCode)) {
+            // ACCESS TO COMPONENT
+            UIInput neighbourhoodInputText = (UIInput) viewRoot.findComponent("vacantForm:neighbourhood");
+            String newNeighbourhood = "Napoles";
+            neighbourhoodInputText.setValue(newNeighbourhood);
+            neighbourhoodInputText.setSubmittedValue(newNeighbourhood);
+            // ACCESS COMPONENT
+            UIInput cityInputText = (UIInput) viewRoot.findComponent("vacantForm:city");
+            String newCity = "Ciudad de Mexico";
+            cityInputText.setValue(newCity);
+            cityInputText.setSubmittedValue(newCity);
+            // SEND RESPONSE
+            facesContext.renderResponse();
         }
     }
 }
