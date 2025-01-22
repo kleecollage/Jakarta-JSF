@@ -1,5 +1,6 @@
 package beans.backing;
 
+import beans.helper.SuburbHelper;
 import beans.model.Candidate;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
@@ -20,6 +21,9 @@ public class VacantForm {
     private Candidate candidate;
 
     private boolean commentSent;
+
+    @Inject
+    private SuburbHelper suburbHelper;
 
     Logger log = LogManager.getLogger(VacantForm.class);
 
@@ -53,21 +57,19 @@ public class VacantForm {
     public void zipCodeListener(ValueChangeEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         UIViewRoot viewRoot = facesContext.getViewRoot();
-        String newZipCode = (String) event.getNewValue();
-        if ("03810".equals(newZipCode)) {
-            // ACCESS TO COMPONENT
-            UIInput suburbIdInputText = (UIInput) viewRoot.findComponent("vacantForm:suburbId");
-            int newSuburbId = 1;
-            suburbIdInputText.setValue(newSuburbId);
-            suburbIdInputText.setSubmittedValue(newSuburbId);
-            // ACCESS COMPONENT
-            UIInput cityInputText = (UIInput) viewRoot.findComponent("vacantForm:city");
-            String newCity = "Ciudad de Mexico";
-            cityInputText.setValue(newCity);
-            cityInputText.setSubmittedValue(newCity);
-            // SEND RESPONSE
-            facesContext.renderResponse();
-        }
+        int newZipCode = ((Long) event.getNewValue()).intValue();
+        // ACCESS TO COMPONENT
+        UIInput suburbIdInputText = (UIInput) viewRoot.findComponent("vacantForm:suburbId");
+        int newSuburbId = this.suburbHelper.getSuburbIdByZipCode(newZipCode);
+        suburbIdInputText.setValue(newSuburbId);
+        suburbIdInputText.setSubmittedValue(newSuburbId);
+        // ACCESS COMPONENT
+        UIInput cityInputText = (UIInput) viewRoot.findComponent("vacantForm:city");
+        String newCity = "Ciudad de Mexico";
+        cityInputText.setValue(newCity);
+        cityInputText.setSubmittedValue(newCity);
+        // SEND RESPONSE
+        facesContext.renderResponse();
     }
 
     public void hideComment(ActionEvent event) {
@@ -82,4 +84,14 @@ public class VacantForm {
         this.commentSent = commentSent;
     }
 
+
+
+
+    public SuburbHelper getSuburbHelper() {
+        return suburbHelper;
+    }
+
+    public void setSuburbHelper(SuburbHelper suburbHelper) {
+        this.suburbHelper = suburbHelper;
+    }
 }

@@ -43,7 +43,9 @@
                         onchange="this.form.submit()"
                         required="true"
                         value="#{candidate.zipCode}"
-                        valueChangeListener="#{vacantForm.zipCodeListener}" />
+                        valueChangeListener="#{vacantForm.zipCodeListener}" >
+                        <f:convertNumber integerOnly="true" pattern="00000" />
+                    </h:inputText>
                 </td>
                 <td><h:message for="zipCode" /></td>
             </tr>
@@ -51,10 +53,7 @@
                 <td><h:outputLabel for="suburbId" value="#{msgs['vacantForm.suburbId']}"/></td>
                 <td><h:selectOneMenu id="suburbId" required="true" value="#{candidate.suburbId}" >
                         <f:selectItem itemLabel="#{msgs['vacantForm.select']}" itemValue="" />
-                        <f:selectItem itemLabel="Napoles" itemValue="1" />
-                        <f:selectItem itemLabel="Polanco" itemValue="2" />
-                        <f:selectItem itemLabel="Del Valle Centro" itemValue="3" />
-                        <f:selectItem itemLabel="Roma" itemValue="4" />
+                    <f:selectItems value="#{suburbHelper.selectItems}" />
                     </h:selectOneMenu>
                 </td>
                 <td><h:message for="suburbId" /></td>
