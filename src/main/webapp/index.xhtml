@@ -68,6 +68,32 @@
                 <td><h:message for="city" /></td>
             </tr>
         </table>
+        <table>
+            <tr>
+                <td>
+                    <h:commandLink
+                            actionListener="#{vacantForm.hideComment}"
+                            immediate="true"
+                            rendered="#{!vacantForm.commentSent}"
+                            value="#{msgs['vacantForm.show']}" />
+                    <h:commandLink
+                            actionListener="#{vacantForm.hideComment}"
+                            immediate="true"
+                            rendered="#{vacantForm.commentSent}"
+                            value="#{msgs['vacantForm.hide']}" />
+                </td>
+            </tr>
+        </table>
+        <h:panelGroup rendered="#{vacantForm.commentSent}">
+            <table>
+                <tr>
+                    <td><h:outputLabel for="comment" value="#{msgs['vacantForm.comment']}" /> </td>
+                </tr>
+                <tr>
+                    <td><h:inputTextarea id="comment" cols="50" rows="10" value="#{candidate.comment}" /></td>
+                </tr>
+            </table>
+        </h:panelGroup>
         <h:commandButton action="#{vacantForm.send()}" value="#{msgs['vacantForm.send']}" />
     </h:form>
 </f:view>

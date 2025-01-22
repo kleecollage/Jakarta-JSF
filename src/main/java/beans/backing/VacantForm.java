@@ -6,6 +6,7 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIInput;
 import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.ActionEvent;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -17,6 +18,8 @@ import org.apache.logging.log4j.Logger;
 public class VacantForm {
     @Inject
     private Candidate candidate;
+
+    private boolean commentSent;
 
     Logger log = LogManager.getLogger(VacantForm.class);
 
@@ -66,4 +69,17 @@ public class VacantForm {
             facesContext.renderResponse();
         }
     }
+
+    public void hideComment(ActionEvent event) {
+        this.commentSent = !this.commentSent;
+    }
+
+    public boolean isCommentSent() {
+        return commentSent;
+    }
+
+    public void setCommentSent(boolean commentSent) {
+        this.commentSent = commentSent;
+    }
+
 }

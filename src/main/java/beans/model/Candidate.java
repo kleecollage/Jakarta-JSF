@@ -16,6 +16,7 @@ public class Candidate {
     private String zipCode;
     private String neighbourhood;
     private String city;
+    private String comment;
 
     Logger log = LogManager.getRootLogger();
 
@@ -81,5 +82,13 @@ public class Candidate {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }
